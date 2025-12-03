@@ -1,13 +1,11 @@
 import Card from "./Card";
 
-export default function CardList({ items }) {
-  return (
-    <div className="row g-4">
-      {items.map((item) => (
-        <div key={item.id} className="col-md-4">
-          <Card item={item} />
-        </div>
-      ))}
+const CardList = ({ items }) => (
+    <div className="grid grid-cols-3 gap-4 justify-items-center">
+        {items.map((item) => (
+            <Card key={item.name} item={item} />
+        ))}
     </div>
-  );
-}
+);
+
+export default CardList;

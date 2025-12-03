@@ -1,40 +1,52 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useStore } from "../store/store"; 
+import CardList from "../components/CardList";
+import image from "../assets/images/pokemon.jpg";
 
-export default function Home() {
-  return (
-    <article className="py-5">
-      <div className="container text-center">
-        <h1 className="display-4 fw-bold">Bienvenido a Pokémon SPA</h1>
-        <p className="lead text-muted">Explora Pokémon con esta SPA usando Zustand y React Router</p>
+const Home = () => {
+    const { pokemons, fetchPokemons, isLoading, error } = useStore();
 
-        <div className="row g-4 mt-4 justify-content-center">
-          <div className="col-md-4">
-            <div className="card h-100 shadow-sm border-0 text-center">
-              <div className="card-body p-5">
-                <i className="bi bi-collection-play-fill text-primary fs-1 mb-3"></i>
-                <h5 className="card-title fw-bold">Ver Entities</h5>
-                <p className="card-text text-muted">Explora la lista de todos los Entities disponibles</p>
-                <Link to="/entities" className="btn btn-primary">
-                  Ir a entities
-                </Link>
-              </div>
-            </div>
-          </div>
+    useEffect(() => {
+        fetchPokemons(1);
+    }, []);
 
-          <div className="col-md-4">
-            <div className="card h-100 shadow-sm border-0 text-center">
-              <div className="card-body p-5">
-                <i className="bi bi-envelope-fill text-success fs-1 mb-3"></i>
-                <h5 className="card-title fw-bold">Contacto</h5>
-                <p className="card-text text-muted">Envíanos un mensaje si tienes alguna duda</p>
-                <Link to="/contact" className="btn btn-success">
-                  Contacto
-                </Link>
-              </div>
-            </div>
-          </div>
+    return (
+        <div>
+            <section
+                className="position-relative w-100"
+                style={{
+                    height: "380px",
+                    backgroundImage: `url(${image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center"
+                }}
+            >
+                <div
+                    className="position-absolute top-0 start-0 w-100 h-100 d-flex 
+                               align-items-center justify-content-center"
+                    style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+                >
+                    <h1 className="text-white fw-bold display-5 text-center">
+                        Bienvenido al Mundo Pokémon
+                    </h1>
+                </div>
+            </section>
+            <section className="container py-5">
+                <h2 className="fw-bold mb-4">Pokemons</h2>
+
+                {isLoading && (
+                    <p className="text-center mb-4">Loading...</p>
+                )}
+
+                {error && (
+                    <p className="text-center text-danger mb-4">
+                        Error: {error}
+                    </p>
+                )}
+                <CardList items={pokemons.slice(0, 6)} />
+            </section>
         </div>
-      </div>
-    </article>
-  );
-}
+    );
+};
+
+export default Home;

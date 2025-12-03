@@ -21,12 +21,10 @@ const Entities = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="text-2xl font-bold mb-4">Pokémon List</h2>
+      <h2 className="text-2xl font-bold mb-4">Pokemon List</h2>
 
       {isLoading && <p className="text-center mb-4">Loading...</p>}
       {error && <p className="text-center text-red-500 mb-4">Error: {error}</p>}
-
-      {/* CardList espera items */}
       <div className="flex justify-center">
         <CardList items={pokemons} />
       </div>
