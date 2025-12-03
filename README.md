@@ -1,7 +1,7 @@
 ### Examen Poke API
 Proyecto realizado como examen utilizando la PokeAPI. Permite consultar información de distintos Pokémon de manera dinámica desde la API oficial.
 
-API utilizada: https://pokeapi.co/api/v2/ 
+API utilizada: https://pokeapi.co/api/v2/pokemon
 
 ## Instalación
 
@@ -27,3 +27,5 @@ npm run dev
 #### Repositorio
 
 https://github.com/lynmad05/Examen_pokeapi.git
+
+####  Realizado por https://github.com/lynmad05 
