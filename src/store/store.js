@@ -19,8 +19,22 @@ export const useStore = create((set) => ({
       );
       const data = await res.json();
 
+      // Obtener detalles (IMAGEN)
+      const detailedPokemons = await Promise.all(
+        data.results.map(async (p) => {
+          const detailRes = await fetch(p.url);
+          const detail = await detailRes.json();
+
+          return {
+            name: p.name,
+            image: detail.sprites.other["official-artwork"].front_default,
+            id: detail.id,
+          };
+        })
+      );
+
       set({
-        pokemons: data.results, 
+        pokemons: detailedPokemons,
         currentPage: page,
         totalCount: data.count,
         isLoading: false,

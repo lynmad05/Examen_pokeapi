@@ -20,33 +20,33 @@ const Entities = () => {
   }, [currentPage]);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h2 className="text-2xl font-bold mb-4">Pokemon List</h2>
+    <div className="container py-5">
+      <h2 className="fw-bold mb-4">Lista de Pokémon</h2>
 
-      {isLoading && <p className="text-center mb-4">Loading...</p>}
-      {error && <p className="text-center text-red-500 mb-4">Error: {error}</p>}
-      <div className="flex justify-center">
+      {isLoading && <p className="text-center mb-4">Cargando...</p>}
+      {error && <p className="text-center text-danger mb-4">Error: {error}</p>}
+
+      <div className="d-flex justify-content-center">
         <CardList items={pokemons} />
       </div>
 
-      {/* Paginación */}
-      <div className="flex justify-center mt-6 gap-4">
+      <div className="d-flex justify-content-center align-items-center gap-3 mt-4">
         <button
           onClick={() => fetchPokemons(currentPage - 1)}
           disabled={currentPage === 1 || isLoading}
-          className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
+          className="btn btn-primary"
         >
           Previous
         </button>
 
-        <span className="flex items-center font-semibold">
+        <span className="fw-semibold">
           Page {currentPage} / {totalPages || 1}
         </span>
 
         <button
           onClick={() => fetchPokemons(currentPage + 1)}
           disabled={currentPage === totalPages || isLoading}
-          className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
+          className="btn btn-primary"
         >
           Next
         </button>

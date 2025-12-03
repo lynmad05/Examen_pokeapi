@@ -1,12 +1,13 @@
 const Card = ({ item }) => {
     return (
-        <div className="max-w-sm rounded overflow-hidden shadow-lg m-4 p-4 bg-white">
-            <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2 capitalize">
+        <div className="card shadow-sm mb-4">
+            <div className="card-body">
+                <h5 className="card-title text-capitalize">
                     {item.name}
-                </div>
-                <p className="text-gray-700 text-base">
-                    ID: {item.url}
+                </h5>
+                <img src={item.image} alt={item.name} className="card-img-top" />
+                <p className="card-text">
+                    ID: {item.id}
                 </p>
             </div>
         </div>
